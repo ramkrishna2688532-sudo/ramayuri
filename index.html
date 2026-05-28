@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green health pure Powder | Order & Dispatch Console</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        header {
+            background-color: #1e3a2f;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid #2ecc71;
+        }
+
+        .logo h1 { font-size: 24px; color: #2ecc71; }
+        .owner-badge { background: #2ecc71; color: #1e3a2f; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+        nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: bold; }
+
+        .hero {
+            background: linear-gradient(rgba(26, 54, 41, 0.85), rgba(26, 54, 41, 0.85)), url('https://images.unsplash.com/photo-1610970881699-44a55b4cfd87?q=80&w=1000') no-repeat center center/cover;
+            height: 28vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        
+        .hub-address {
+            background-color: #e8f8f5;
+            border-left: 5px solid #2ecc71;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* 50 PACKETS STOCK MENTION PANEL */
+        .stock-panel {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .stock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .stock-card {
+            background: #f8f9fa;
+            border: 1px solid #2ecc71;
+            border-radius: 6px;
+            padding: 12px;
+            text-align: center;
+        }
+        .stock-card h5 { color: #1e3a2f; font-size: 16px; }
+        .stock-card p { color: #e74c3c; font-weight: bold; margin-top: 5px; }
+        .stock-count { font-size: 12px; color: #7f8c8d; display: block; margin-top: 2px; }
+
+        /* DOUBLE BOX DESIGN */
+        .grid-panels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+        }
+
+        .panel-box {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            border: 1px solid #dee2e6;
+        }
+
+        .customer-panel { border-top: 5px solid #e74c3c; }
+        .admin-panel { border-top: 5px solid #2ecc71; background-color: #fafbfc; }
+
+        label { display: block; font-weight: bold; margin: 12px 0 6px 0; color: #1e3a2f; }
+        select, input, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; }
+        textarea { resize: none; }
+
+        .submit-btn {
+            background-color: #e74c3c; color: white; padding: 12px; border: none;
+            border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer;
+            width: 100%; margin-top: 20px; transition: 0.2s;
+        }
+        .submit-btn:hover { background-color: #c0392b; }
+
+        /* LIVE INVOICE BILL TICKET */
+        .no-order-msg { color: #7f8c8d; text-align: center; font-style: italic; margin-top: 40px; }
+        .order-ticket {
+            background: white; border: 2px dashed #2ecc71; padding: 20px;
+            border-radius: 8px; margin-top: 15px; display: none;
+        }
+        .ticket-header { text-align: center; border-bottom: 2px solid #2ecc71; padding-bottom: 8px; margin-bottom: 12px; }
+
+        /* CATALOG DISPLAY WITH WORKING PHOTO ICONS */
+        .category-title { background-color: #1e3a2f; color: white; padding: 10px; margin: 30px 0 15px 0; border-radius: 4px; font-size: 16px; text-transform: uppercase; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+        .product-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; text-align: center; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .product-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .fruit-photo-box { font-size: 40px; margin-bottom: 8px; background: #f8f9fa; border-radius: 50%; width: 60px; height: 60px; line-height: 60px; margin: 0 auto 10px auto; }
+        
+        footer { background-color: #1e3a2f; color: white; text-align: center; padding: 25px; margin-top: 60px; font-size: 14px; border-top: 4px solid #2ecc71; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>🌿 Green health pure Powder</h1>
+            <span class="owner-badge">Proprietor: Ram krishna Roy</span>
+        </div>
+        <nav>
+            <a href="#booking-area">Order & Dispatch Desk</a>
+            <a href="#store">100 Fruits Catalog</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Welcome to Green health pure Powder</h2>
+        <p style="font-size: 18px; margin-top: 5px; color: #2ecc71; font-weight: bold;">Managed by: Ram krishna Roy</p>
+        <p style="margin-top: 10px; font-size: 14px; opacity: 0.9;">Premium Quality Custom Fruit Powders — Live Cloud Database Integrated</p>
+    </section>
+
+    <div class="container">
+        
+        <!-- MAIN SELLER HUB ADDRESS -->
+        <div class="hub-address">
+            <strong>🏭 Registered Factory & Dispatch Warehouse Hub:</strong>
+            <p>Sirajuli to Borsala Road, Town: Borsala, Village: Gopchor, District: Sonitpur, State: Assam - Pin: 784110</p>
+        </div>
+
+        <!-- 50 PACKETS READY STOCK DISPLAY -->
+        <div class="stock-panel">
+            <h4 style="color: #1e3a2f; border-bottom: 2px solid #f1f2f6; padding-bottom: 8px;">📦 Active Batch Stock: 50 Custom Packets Ready to Pack</h4>
+            <div class="stock-grid">
+                <div class="stock-card">
+                    <h5>10 Gram</h5>
+                    <p>₹100</p>
+                    <span class="stock-count">(10 Packs Ready)</span>
+                </div>
+                <div class="stock-card">
+                    <h5>250 Gram</h5>
+                    <p>₹100</p>
+                    <span class="stock-count">(10 Packs Ready)</span>
+                </div>
+                <div class="stock-card">
+                    <h5>500 Gram</h5>
+                    <p>₹400</p>
+                    <span class="stock-count">(10 Packs Ready)</span>
+                </div>
+                <div class="stock-card">
+                    <h5>1.0 Kg</h5>
+                    <p>₹400</p>
+                    <span class="stock-count">(10 Packs Ready)</span>
+                </div>
+                <div class="stock-card">
+                    <h5>3.5 Kg</h5>
+                    <p>₹1000</p>
+                    <span class="stock-count">(10 Packs Ready)</span>
+                </div>
+            </div>
+            <div style="margin-top: 12px; font-size: 13px; color: #2ecc71; font-weight: bold; text-align: right;">
+                ✔ Total Assorted Buffer Stock: 50 Units Listed
+            </div>
+        </div>
+
+        <!-- DOUBLE PANEL SYSTEM -->
+        <div class="grid-panels" id="booking-area">
+            
+            <!-- PANEL A: CUSTOMER SIDE -->
+            <div class="panel-box customer-panel">
+                <h3 style="color: #e74c3c; margin-bottom: 10px;">👤 Customer Order Desk</h3>
+                <p style="font-size: 13px; color: #7f8c8d;">Customer details yahan bharega (Yeh automatic register me save hoga):</p>
+                
+                <!-- ATTENTION: FORM ACTION POINTS TO FORMSPREE FOR GOOGLE SHEET/EMAIL ROUTING -->
+                <form id="orderForm" action="https://formspree.io/f/https://formspree.io/f/xdajyjqd" method="POST" onsubmit="sendToAdmin(event)">
+                    
+                    <!-- Hidden fields for better spreadsheet logging -->
+                    <input type="hidden" name="Order_ID" id="hiddenOrderID">
+                    <input type="hidden" name="Total_Bill" id="hiddenTotalBill">
+
+                    <label for="custName">Customer Full Name:</label>
+                    <input type="text" id="custName" name="Customer_Name" placeholder="Enter full name" required>
+
+                    <label for="custPhone">Phone Number:</label>
+                    <input type="tel" id="custPhone" name="Customer_Phone" placeholder="Enter active mobile number" required>
+
+                    <label for="fruitSelect">Select Fruit Powder:</label>
+                    <select id="fruitSelect" name="Fruit_Selected" required onchange="showSelectedFruitPhoto()">
+                        <option value="">-- Choose From 100 Fruits --</option>
+                    </select>
+
+                    <div id="formFruitPhoto" style="text-align: center; margin: 10px 0; font-size: 50px; display: none; background: #f8f9fa; border-radius: 8px; padding: 10px;">
+                        <span id="liveFormIcon">🥭</span>
+                        <div style="font-size: 12px; color: #7f8c8d;">Selected Product Photo</div>
+                    </div>
+
+                    <div style="display: flex; gap: 15px;">
+                        <div style="flex: 1;">
+                            <label for="sizeSelect">Select Packing Size:</label>
+                            <select id="sizeSelect" name="Pack_Size" required onchange="updateLivePrice()">
+                                <option value="">-- Choose Size --</option>
+                                <option value="10g" data-price="100">10 Gram (₹100)</option>
+                                <option value="250g" data-price="100">250 Gram (₹100)</option>
+                                <option value="500g" data-price="400">500 Gram (₹400)</option>
+                                <option value="1kg" data-price="400">1.0 Kg (₹400)</option>
+                                <option value="3.5kg" data-price="1000">3.5 Kg (₹1000)</option>
+                            </select>
+                        </div>
+                        <div style="width: 100px;">
+                            <label for="qtyInput">Quantity:</label>
+                            <input type="number" id="qtyInput" name="Quantity" min="1" value="1" required oninput="updateLivePrice()">
+                        </div>
+                    </div>
+
+                    <label for="custAddress">Full Delivery Address (Aapka Pata):</label>
+                    <textarea id="custAddress" name="Delivery_Address" rows="3" placeholder="Complete House No, Road, Village/Town, City, PIN Code" required></textarea>
+
+                    <div style="margin-top: 15px; font-size: 16px; font-weight: bold; color: #e74c3c;">
+                        Live Total Value: ₹<span id="livePrice">0</span>/-
+                    </div>
+
+                    <button type="submit" class="submit-btn">🔔 PLACE ORDER NOW</button>
+                </form>
+            </div>
+
+            <!-- PANEL B: ADMIN SIDE (RAM KRISHNA ROY'S SCREEN FEED) -->
+            <div class="panel-box admin-panel">
+                <h3 style="color: #2ecc71; margin-bottom: 5px;">🛠 Master Control Board</h3>
+                <p style="font-size: 12px; font-weight: bold; color: #1e3a2f; margin-bottom: 10px;">Proprietor: Ram krishna Roy</p>
+                
+                <!-- DIRECT LINK TO CHECK GOOGLE RECORDS -->
+                <div style="background: #e8f8f5; border: 1px dashed #2ecc71; padding: 10px; border-radius: 6px; margin-bottom: 15px; text-align: center;">
+                    <span style="font-size: 13px; font-weight: bold; color: #1e3a2f;">📊 Sabhi Orders Ki Excel Sheet Check Karein:</span>
+                    <a href="https://formspree.io/submissions" target="_blank" style="display: block; margin-top: 5px; background: #2ecc71; color: white; padding: 5px; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: bold;">👉 OPEN MY SUBMISSIONS REGISTER</a>
+                </div>
+
+                <div id="noOrder" class="no-order-msg">
+                    <p>📭 Naye orders ka database live scan ho raha hai...</p>
+                </div>
+
+                <!-- DYNAMIC TICKET -->
+                <div class="order-ticket" id="adminTicket">
+                    <div class="ticket-header">
+                        <h4 style="color: #2ecc71;">🚨 NEW LOCAL DISPATCH LOGGED</h4>
+                        <span id="orderTime" style="font-size: 11px; color:#7f8c8d;"></span>
+                    </div>
+                    <div style="font-size: 14px; line-height: 1.6; color: #2c3e50;">
+                        <div id="receiptFruitIcon" style="font-size: 45px; text-align: center; background: #e8f8f5; border-radius: 50%; width: 70px; height: 70px; line-height: 70px; margin: 0 auto 10px auto;">📦</div>
+                        <p><strong>Order ID:</strong> <span id="tId" style="color: #e67e22; font-weight:bold;"></span></p>
+                        <p><strong>Customer Name:</strong> <span id="tName"></span></p>
+                        <p><strong>Customer Phone:</strong> <span id="tPhone"></span></p>
+                        <hr style="margin: 8px 0; border: 0.5px solid #ddd;">
+                        <p><strong>Product Ordered:</strong> <span id="tFruit"></span></p>
+                        <p><strong>Pack Size & Qty:</strong> <span id="tSize"></span> (<span id="tQty"></span> Packets)</p>
+                        <p><strong>Total Bill:</strong> <strong style="color: #2ecc71; font-size: 16px;">₹<span id="tTotal"></span>/-</strong></p>
+                        
+                        <div style="margin-top: 12px; background: #fff3cd; border: 1px solid #ffeeba; padding: 12px; border-radius: 6px;">
+                            <strong style="color: #856404; display:block; margin-bottom:4px;">🚚 DELIVERY ADDRESS:</strong>
+                            <p id="tAddress" style="font-weight: 600; color: #533f03;"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 100 FRUITS VISUAL CATALOGUE -->
+        <div id="store" style="margin-top: 50px;">
+            <h3 style="text-align: center; color: #1e3a2f; margin-bottom: 5px;">📖 Green health pure Powder - Catalog Index</h3>
+            <div class="category-title">1. Traditional & Berries</div> <div class="products-grid" id="cat1"></div>
+            <div class="category-title">2. Citrus & Tangy</div> <div class="products-grid" id="cat2"></div>
+            <div class="category-title">3. Melons & Hydrating</div> <div class="products-grid" id="cat3"></div>
+            <div class="category-title">4. Exotic Varieties</div> <div class="products-grid" id="cat4"></div>
+            <div class="category-title">5. Rare Superfruits</div> <div class="products-grid" id="cat5"></div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 <strong>Green health pure Powder</strong>. All Rights Reserved.</p>
+        <p style="color: #a3b899; font-size:13px; margin-top:4px;">Proprietor: <strong>Ram krishna Roy</strong> | Unit: Sonitpur, Assam</p>
+    </footer>
+
+    <script>
+        const fruitsData = [
+            {id:1, name:"Mango (Aam) Powder", cat:"cat1", icon:"🥭"}, {id:2, name:"Banana (Kela) Powder", cat:"cat1", icon:"🍌"}, {id:3, name:"Apple (Seb) Powder", cat:"cat1", icon:"🍎"}, {id:4, name:"Guava Powder", cat:"cat1", icon:"🍏"}, {id:5, name:"Papaya Powder", cat:"cat1", icon:"🍈"}, {id:6, name:"Pomegranate Powder", cat:"cat1", icon:"🍅"}, {id:7, name:"Strawberry Powder", cat:"cat1", icon:"🍓"}, {id:8, name:"Jamun Powder", cat:"cat1", icon:"🍇"}, {id:9, name:"Amla Powder", cat:"cat1", icon:"🟢"}, {id:10, name:"Jackfruit Powder", cat:"cat1", icon:"🌳"}, {id:11, name:"Bel Powder", cat:"cat1", icon:"🟓"}, {id:12, name:"Custard Apple Powder", cat:"cat1", icon:"🍈"}, {id:13, name:"Chikoo Powder", cat:"cat1", icon:"🟤"}, {id:14, name:"Litchi Powder", cat:"cat1", icon:"🔴"}, {id:15, name:"Blueberry Powder", cat:"cat1", icon:"🫐"}, {id:16, name:"Raspberry Powder", cat:"cat1", icon:"🍒"}, {id:17, name:"Cranberry Powder", cat:"cat1", icon:"🍒"}, {id:18, name:"Mulberry Powder", cat:"cat1", icon:"🍇"}, {id:19, name:"Goji Berry Powder", cat:"cat1", icon:"🌶️"}, {id:20, name:"Acai Berry Powder", cat:"cat1", icon:"🟤"},
+            {id:21, name:"Orange Powder", cat:"cat2", icon:"🍊"}, {id:22, name:"Mosambi Powder", cat:"cat2", icon:"🍋"}, {id:23, name:"Lemon Powder", cat:"cat2", icon:"🍋"}, {id:24, name:"Pineapple Powder", cat:"cat2", icon:"🍍"}, {id:25, name:"Kiwi Powder", cat:"cat2", icon:"🥝"}, {id:26, name:"Passion Fruit Powder", cat:"cat2", icon:"🟣"}, {id:27, name:"Grapefruit Powder", cat:"cat2", icon:"🍊"}, {id:28, name:"Pomelo Powder", cat:"cat2", icon:"🍈"}, {id:29, name:"Tangerine Powder", cat:"cat2", icon:"🍊"}, {id:30, name:"Blood Orange Powder", cat:"cat2", icon:"🔴"}, {id:31, name:"Kumquat Powder", cat:"cat2", icon:"🟠"}, {id:32, name:"Kaffir Lime Powder", cat:"cat2", icon:"🟢"}, {id:33, name:"Key Lime Powder", cat:"cat2", icon:"🍋"}, {id:34, name:"Star Fruit Powder", cat:"cat2", icon:"⭐"}, {id:35, name:"Tamarind Powder", cat:"cat2", icon:"🟤"}, {id:36, name:"Green Apple Powder", cat:"cat2", icon:"🍏"}, {id:37, name:"Apricot Powder", cat:"cat2", icon:"🍑"}, {id:38, name:"Peach Powder", cat:"cat2", icon:"🍑"}, {id:39, name:"Plum Powder", cat:"cat2", icon:"🔴"}, {id:40, name:"Cherry Powder", cat:"cat2", icon:"🍒"},
+            {id:41, name:"Watermelon Powder", cat:"cat3", icon:"🍉"}, {id:42, name:"Musk Melon Powder", cat:"cat3", icon:"🍈"}, {id:43, name:"Cantaloupe Powder", cat:"cat3", icon:"🍈"}, {id:44, name:"Honeydew Powder", cat:"cat3", icon:"🟢"}, {id:45, name:"Coconut Water Powder", cat:"cat3", icon:"🥥"}, {id:46, name:"Sugarcane Powder", cat:"cat3", icon:"🎋"}, {id:47, name:"Pear Powder", cat:"cat3", icon:"🍐"}, {id:48, name:"Green Grapes Powder", cat:"cat3", icon:"🍇"}, {id:49, name:"Black Grapes Powder", cat:"cat3", icon:"🍇"}, {id:50, name:"Red Grapes Powder", cat:"cat3", icon:"🍇"}, {id:51, name:"Fig (Anjeer) Powder", cat:"cat3", icon:"🟤"}, {id:52, name:"Date Powder", cat:"cat3", icon:"🌴"}, {id:53, name:"Prune Powder", cat:"cat3", icon:"⚫"}, {id:54, name:"Raisin Powder", cat:"cat3", icon:"🟡"}, {id:55, name:"Persimmon Powder", cat:"cat3", icon:"🟠"},
+            {id:56, name:"Dragon Fruit Pink", cat:"cat4", icon:"🐉"}, {id:57, name:"Dragon Fruit White", cat:"cat4", icon:"⚪"}, {id:58, name:"Avocado Powder", cat:"cat4", icon:"🥑"}, {id:59, name:"Mangosteen Powder", cat:"cat4", icon:"🟣"}, {id:60, name:"Rambutan Powder", cat:"cat4", icon:"🔴"}, {id:61, name:"Exotic Lychee Powder", cat:"cat4", icon:"🔴"}, {id:62, name:"Durian Powder", cat:"cat4", icon:"🧆"}, {id:63, name:"Longan Powder", cat:"cat4", icon:"🟤"}, {id:64, name:"Pink Guava Powder", cat:"cat4", icon:"🌸"}, {id:65, name:"Feijoa Powder", cat:"cat4", icon:"🟢"}, {id:66, name:"Cape Gooseberry", cat:"cat4", icon:"🟡"}, {id:67, name:"Elderberry Powder", cat:"cat4", icon:"🍇"}, {id:68, name:"Boysenberry Powder", cat:"cat4", icon:"🫐"}, {id:69, name:"Loganberry Powder", cat:"cat4", icon:"🍒"}, {id:70, name:"Dewberry Powder", cat:"cat4", icon:"🍇"}, {id:71, name:"Huckleberry Powder", cat:"cat4", icon:"🟤"}, {id:72, name:"Black Currant Powder", cat:"cat4", icon:"⚫"}, {id:73, name:"Red Currant Powder", cat:"cat4", icon:"🔴"}, {id:74, name:"Green Gooseberry", cat:"cat4", icon:"🟢"}, {id:75, name:"Bilberry Powder", cat:"cat4", icon:"🔵"},
+            {id:76, name:"Noni Fruit Powder", cat:"cat5", icon:"🟢"}, {id:77, name:"Sea Buckthorn", cat:"cat5", icon:"🟠"}, {id:78, name:"Baobab Powder", cat:"cat5", icon:"🟤"}, {id:79, name:"Camu Camu Powder", cat:"cat5", icon:"🔴"}, {id:80, name:"Acerola Cherry", cat:"cat5", icon:"🍒"}, {id:81, name:"Rose Apple Powder", cat:"cat5", icon:"🍎"}, {id:82, name:"Jujube (Ber) Powder", cat:"cat5", icon:"🟤"}, {id:83, name:"Star Apple Powder", cat:"cat5", icon:"🍏"}, {id:84, name:"Breadfruit Powder", cat:"cat5", icon:"🍈"}, {id:85, name:"Sapodilla Powder", cat:"cat5", icon:"🟤"}, {id:86, name:"Soursop Powder", cat:"cat5", icon:"🟢"}, {id:87, name:"Tamarillo Powder", cat:"cat5", icon:"🍅"}, {id:88, name:"Quince Powder", cat:"cat5", icon:"🍏"}, {id:89, name:"Loquat Powder", cat:"cat5", icon:"🟠"}, {id:90, name:"Medlar Powder", cat:"cat5", icon:"🟤"}, {id:91, name:"Mulgoba Mango", cat:"cat5", icon:"🥭"}, {id:92, name:"Langsat Powder", cat:"cat5", icon:"🟡"}, {id:93, name:"Santol Powder", cat:"cat5", icon:"🟤"}, {id:94, name:"Pulasan Powder", cat:"cat5", icon:"🔴"}, {id:95, name:"Snake Fruit Powder", cat:"cat5", icon:"🟤"}, {id:96, name:"Maracuja Powder", cat:"cat5", icon:"🟡"}, {id:97, name:"Jabuticaba Powder", cat:"cat5", icon:"🟣"}, {id:98, name:"Cupuacu Powder", cat:"cat5", icon:"🟤"}, {id:99, name:"Cherimoya Powder", cat:"cat5", icon:"🟢"}, {id:100, name:"Miracle Fruit Powder", cat:"cat5", icon:"🔴"}
+        ];
+
+        function startConsole() {
+            const dropdown = document.getElementById('fruitSelect');
+            fruitsData.forEach(f => {
+                let opt = document.createElement('option');
+                opt.value = f.name;
+                opt.setAttribute('data-icon', f.icon);
+                opt.textContent = `${f.id}. ${f.icon} ${f.name}`;
+                dropdown.appendChild(opt);
+
+                let card = `
+                    <div class="product-card">
+                        <div class="fruit-photo-box">${f.icon}</div>
+                        <div style="font-size:11px; color:#2ecc71; font-weight:bold;">#${f.id}</div>
+                        <div style="font-size:13px; font-weight:bold; color:#1e3a2f;">${f.name}</div>
+                    </div>`;
+                document.getElementById(f.cat).innerHTML += card;
+            });
+        }
+        window.onload = startConsole;
+
+        function showSelectedFruitPhoto() {
+            const dropdown = document.getElementById('fruitSelect');
+            const chosen = dropdown.options[dropdown.selectedIndex];
+            const icon = chosen.getAttribute('data-icon');
+            if(icon) {
+                document.getElementById('formFruitPhoto').style.display = 'block';
+                document.getElementById('liveFormIcon').innerText = icon;
+            } else {
+                document.getElementById('formFruitPhoto').style.display = 'none';
+            }
+        }
+
+        function updateLivePrice() {
+            const sizeEl = document.getElementById('sizeSelect');
+            const qty = document.getElementById('qtyInput').value || 0;
+            const chosen = sizeEl.options[sizeEl.selectedIndex];
+            const basePrice = chosen ? chosen.getAttribute('data-price') : 0;
+            
+            const total = basePrice * qty;
+            document.getElementById('livePrice').innerText = total;
+            document.getElementById('hiddenTotalBill').value = total;
+        }
+
+        function sendToAdmin(e) {
+            // Local receipt animation logic
+            const dropdown = document.getElementById('fruitSelect');
+            const chosenFruit = dropdown.options[dropdown.selectedIndex];
+            const fruitName = chosenFruit.value;
+            const fruitIcon = chosenFruit.getAttribute('data-icon');
+
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const sizeEl = document.getElementById('sizeSelect');
+            const sizeText = sizeEl.options[sizeEl.selectedIndex].text;
+            const basePrice = sizeEl.options[sizeEl.selectedIndex].getAttribute('data-price');
+            const qty = document.getElementById('qtyInput').value;
+            const address = document.getElementById('custAddress').value;
+
+            const finalBill = basePrice * qty;
+            const generatedID = "GHP-" + Math.floor(100000 + Math.random() * 900000);
+
+            document.getElementById('hiddenOrderID').value = generatedID;
+
+            document.getElementById('tId').innerText = generatedID;
+            document.getElementById('tName').innerText = name;
+            document.getElementById('tPhone').innerText = phone;
+            document.getElementById('tFruit').innerText = fruitName;
+            document.getElementById('receiptFruitIcon').innerText = fruitIcon; 
+            document.getElementById('tSize').innerText = sizeText;
+            document.getElementById('tQty').innerText = qty;
+            document.getElementById('tTotal').innerText = finalBill;
+            document.getElementById('tAddress').innerText = address;
+
+            document.getElementById('orderTime').innerText = "Logged: " + new Date().toLocaleTimeString();
+            document.getElementById('noOrder').style.display = 'none';
+            document.getElementById('adminTicket').style.display = 'block';
+            
+            alert("🚀 Green health pure Powder: Order server par save ho raha hai! Niche Excel submissions dashboard link par click karke check karein.");
+        }
+    </script>
+</body>
+</html>
